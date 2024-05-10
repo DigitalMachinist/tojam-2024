@@ -13,6 +13,13 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("Fire1");
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("Fire2");
+        }
     }
 }
