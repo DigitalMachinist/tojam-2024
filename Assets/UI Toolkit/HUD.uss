@@ -1,0 +1,51 @@
+.scoreText {
+    font-size: 64px;
+    color: rgb(255, 255, 255);
+    -unity-font: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=1594ac0d8722e2f498decacc3c6a678e&type=3#NotInter-Regular");
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+}
+
+.scoreHeader {
+    font-size: 40px;
+    -unity-font-style: normal;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=1594ac0d8722e2f498decacc3c6a678e&type=3#NotInter-Regular");
+    -unity-text-align: lower-center;
+    color: rgb(255, 255, 255);
+}
+
+.player {
+    width: 42%;
+    padding-top: 30px;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+}
+
+.card {
+    width: auto;
+    height: 280px;
+    -unity-background-scale-mode: stretch-to-fill;
+    overflow: visible;
+    rotate: 3deg;
+    flex-direction: column;
+    margin-right: -20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+.cardButtonLegend {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+}
