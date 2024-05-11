@@ -7,32 +7,18 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigidbody;
     private bool inPlay = false;
 
-    public float startingYMin = -4f;
-    public float startingYMax = 4f;
-    public float startingSpeed = 1f;
+    public bool isImportant = true;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Go();
-    }
 
-    public void Go()
+    public void Go(Vector2 startPosition, Vector2 startVelocity)
     {
         inPlay = true;
-        
-        // TODO: The code that spawns this should probably decide this stuff.
-        transform.position = new Vector2(0, Random.Range(startingYMin, startingYMax));
-        
-        Quaternion randomRotation = Quaternion.AngleAxis(360f * Random.value, Vector3.forward);
-        Vector2 initialVelocity = randomRotation * Vector2.up * startingSpeed;
-        Debug.Log(initialVelocity);
-        rigidbody.velocity = initialVelocity;
+        transform.position = startPosition;
+        rigidbody.velocity = startVelocity;
     }
 
     public void PrepareToGo(float delay)

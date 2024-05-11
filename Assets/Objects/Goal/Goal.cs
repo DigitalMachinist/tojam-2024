@@ -7,10 +7,10 @@ public class Goal : MonoBehaviour
 {
     public event Action<Ball> goalScored;
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Ball ball = other.GetComponent<Ball>();
-        if (!ball.IsInPlay())
+        if (ball == null || !ball.IsInPlay())
         {
             return;
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PongGame : MonoBehaviour
 {
@@ -13,20 +14,15 @@ public class PongGame : MonoBehaviour
     public int winningScore = 10;
     public float ballAddDelaySeconds = 0.3f;
     public float ballRemoveDelaySeconds = 0.3f;
+    public float startingBallYMin = -4f;
+    public float startingBallYMax = 4f;
+    public float startingBallSpeed = 10f;
+    public Transform ballsParent;
     public Ball prefabDefaultBall;
 
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;
 
-    void Awake()
-    {
-        scores = new Dictionary<PlayerSide, int>()
-        {
-            { PlayerSide.Left, 0 },
-            { PlayerSide.Right, 0 }
-        };
-    }
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +40,38 @@ public class PongGame : MonoBehaviour
                 player.goalScoredAgainst += ball => OnGoalScoredAgainst(ball, PlayerSide.Right);
             }
         }
+        
+        // Start a ball going!
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        ResetBalls();
+        ResetScore();
+        StartCoroutine(CoAddBall(CreateBall(), 0));
+    }
+
+    private void ResetBalls()
+    {
+        if (balls == null)
+        {
+            balls = new List<Ball>();
+        }
+        
+        foreach (var ball in balls)
+        {
+            RemoveBall(ball);
+        }
+    }
+
+    private void ResetScore()
+    {
+        scores = new Dictionary<PlayerSide, int>()
+        {
+            { PlayerSide.Left, 0 },
+            { PlayerSide.Right, 0 }
+        };
     }
 
     private void OnGoalScoredAgainst(Ball ball, PlayerSide side)
@@ -68,26 +96,33 @@ public class PongGame : MonoBehaviour
     public void AddBall(Ball ball)
     {
         balls.Add(ball);
-        ball.Go();
+    }
+
+    public Ball CreateBall()
+    {
+        return Instantiate(prefabDefaultBall, ballsParent);
     }
 
     public void RemoveBall(Ball ball)
     {
         balls.Remove(ball);
-        Destroy(ball);
+        Destroy(ball.gameObject);
 
-        if (!balls.Any())
+        // If this is the last important ball on the field, create a new one.
+        if (!IsGameEnded() && !balls.Any(ball => ball.isImportant))
         {
-            StartCoroutine(CoAddBall(prefabDefaultBall, ballAddDelaySeconds));
+            StartCoroutine(CoAddBall(CreateBall(), ballAddDelaySeconds));
         }
     }
 
     private IEnumerator CoAddBall(Ball ball, float delay)
     {
-        AddBall(Instantiate(ball));
+        AddBall(ball);
         ball.PrepareToGo(delay);
         yield return new WaitForSeconds(delay);
-        ball.Go();
+        Vector2 ballStartPosition = new Vector2(0, Random.Range(startingBallYMin, startingBallYMax));
+        Vector2 ballStartVelocity = Quaternion.AngleAxis(360f * Random.value, Vector3.forward) * Vector2.up * startingBallSpeed;
+        ball.Go(ballStartPosition, ballStartVelocity);
     }
 
     private IEnumerator CoRemoveBall(Ball ball, float delay)
@@ -101,5 +136,18 @@ public class PongGame : MonoBehaviour
     {
         // If this throws an exception, a player is missing or player sides probably aren't set correctly.
         return players.First(x => x.side == side);
+    }
+
+    public bool IsGameEnded()
+    {
+        foreach (var pair in scores)
+        {
+            if (pair.Value >= winningScore)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

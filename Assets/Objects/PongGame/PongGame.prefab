@@ -28,8 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8782114406727294103}
+  m_Children: []
   m_Father: {fileID: 4796305502585020515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427307153566816832
@@ -431,6 +430,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e243384a77c676f4e929036165b3a0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winningScore: 10
+  ballAddDelaySeconds: 0.3
+  ballRemoveDelaySeconds: 0.3
+  startingBallYMin: -4
+  startingBallYMax: 4
+  startingBallSpeed: 8
+  ballsParent: {fileID: 0}
+  prefabDefaultBall: {fileID: 7015224034010814337, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
 --- !u!1 &3975228130204050855
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +939,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8990483225168470155, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
+      propertyPath: side
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1003,66 +1014,4 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2878002711262976508, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
   m_PrefabInstance: {fileID: 6736235323366641998}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &9132920295949989734
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6259348705955606325}
-    m_Modifications:
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1063294901465625891, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-      propertyPath: m_Name
-      value: Ball
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
---- !u!4 &8782114406727294103 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 531125804963195889, guid: 5d7ed5a9000733449bf14d4758286a70, type: 3}
-  m_PrefabInstance: {fileID: 9132920295949989734}
   m_PrefabAsset: {fileID: 0}
