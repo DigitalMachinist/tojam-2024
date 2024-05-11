@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class PongGame : MonoBehaviour
@@ -10,6 +11,7 @@ public class PongGame : MonoBehaviour
     private Player[] players;
     private List<Ball> balls;
     private Dictionary<PlayerSide, int> scores;
+    private Dictionary<PlayerSide, Label> scoreLabels;
     
     public int winningScore = 10;
     public float ballAddDelaySeconds = 0.3f;
@@ -17,16 +19,18 @@ public class PongGame : MonoBehaviour
     public float startingBallYMin = -4f;
     public float startingBallYMax = 4f;
     public float startingBallSpeed = 10f;
+    public UIDocument hud;
     public Transform ballsParent;
     public Ball prefabDefaultBall;
 
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         players = FindObjectsByType<Player>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        
 
         // Hook up event listeners for goal scoring.
         foreach (var player in players)
@@ -72,6 +76,17 @@ public class PongGame : MonoBehaviour
             { PlayerSide.Left, 0 },
             { PlayerSide.Right, 0 }
         };
+        
+        scoreLabels = new Dictionary<PlayerSide, Label>()
+        {
+            { PlayerSide.Left, hud.rootVisualElement.Q<Label>("ScoreLeftText") },
+            { PlayerSide.Right, hud.rootVisualElement.Q<Label>("ScoreRightText") },
+        };
+        
+        foreach (var pair in scoreLabels)
+        {
+            pair.Value.text = scores[pair.Key].ToString();
+        }
     }
 
     private void OnGoalScoredAgainst(Ball ball, PlayerSide side)
@@ -79,6 +94,7 @@ public class PongGame : MonoBehaviour
         PlayerSide sideScored = side.Opposite();
         int newScore = scores[sideScored] + 1;
         scores[sideScored] = newScore;
+        scoreLabels[sideScored].text = newScore.ToString();
         Debug.Log($"{sideScored} scored ({newScore})!");
 
         // Detect that a player won.
