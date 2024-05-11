@@ -21,7 +21,7 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
     public Image face;
     public Image back;
 
-    public event Action rotateComplete;
+    public event Action orientationComplete;
     public event Action flipComplete;
 
     void Awake()
@@ -78,7 +78,7 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
         {
             face.rectTransform.localRotation = targetRotation;
             back.rectTransform.localRotation = targetRotation;
-            rotateComplete?.Invoke();
+            orientationComplete?.Invoke();
             return;
         }
 
@@ -108,7 +108,7 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
         face.rectTransform.localRotation = targetRotation;
         back.rectTransform.localRotation = targetRotation;
         coRotate = null;
-        rotateComplete?.Invoke();
+        orientationComplete?.Invoke();
     }
 
     public void SetFacing(CardFacing facing, float delay = 0f, bool useUnscaledTime = true)

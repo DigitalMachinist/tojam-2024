@@ -88,9 +88,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   orientation: 0
-  facing: 0
-  spriteEarth: {fileID: 21300000, guid: 7b6ac71177e78fe4287366a5e8437e6f, type: 3}
-  spriteFire: {fileID: 21300000, guid: 7b6ac71177e78fe4287366a5e8437e6f, type: 3}
+  facing: 1
+  spriteEarth: {fileID: 21300000, guid: 8cdb232b35b88f247bdcfb1e091efcc6, type: 3}
+  spriteFire: {fileID: 21300000, guid: bb2c8d2d36b0f96498c09da82490ec8a, type: 3}
   spriteIce: {fileID: 21300000, guid: 7e5f1dcfefa91644b910cf07f4e1081a, type: 3}
   spriteShock: {fileID: 21300000, guid: 74a0c162f31205a41a578670cb3fa991, type: 3}
   spriteSpaaace: {fileID: 21300000, guid: 201e6674bf17a394897aaa73adb7a538, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,21 +7,20 @@ public class CardSlot : MonoBehaviour, IOrientable, IFlippable
 {
     private Card card;
 
+    public event Action cardOrientationComplete;
+    public event Action cardFlipComplete;
+
     void Awake()
     {
         card = GetComponentInChildren<Card>();
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+        card.orientationComplete += cardOrientationComplete;
+        card.flipComplete += cardFlipComplete;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetType(CardType type)
     {
-        
+        card.SetType(type);
     }
 
     public void SetOrientation(CardOrientation orientation, float delay, bool useUnscaledtime = true)
