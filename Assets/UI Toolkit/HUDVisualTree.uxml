@@ -1,23 +1,35 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/HUD.uss?fileID=7433441132597879392&amp;guid=be74bee05bd70e3449085049367c1ad9&amp;type=3#HUD" />
     <ui:VisualElement name="Container" style="flex-grow: 1;">
-        <ui:VisualElement name="BottomBanner" style="flex-grow: 1; background-color: rgb(0, 0, 0); justify-content: flex-end; flex-basis: auto; flex-direction: row; height: auto; -unity-background-scale-mode: stretch-to-fill; margin-top: 880px; overflow: hidden; align-items: flex-start;">
-            <ui:VisualElement name="PlayerLeft" class="player" style="flex-grow: 1; height: 100%; overflow: visible; padding-right: 50px; padding-left: 20px;">
-                <ui:VisualElement name="LeftCardContainer4" style="flex-grow: 1;">
-                    <ui:VisualElement name="LeftButton4" class="cardButtonLegend" style="flex-grow: 1;" />
-                    <ui:VisualElement name="LeftCard4" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+        <ui:VisualElement name="BottomBanner" style="flex-grow: 1; background-color: rgb(0, 0, 0); justify-content: flex-end; flex-basis: auto; flex-direction: row; height: auto; -unity-background-scale-mode: stretch-to-fill; margin-top: 870px; overflow: hidden; align-items: flex-start;">
+            <ui:VisualElement name="PlayerLeft" class="player" style="flex-grow: 1; height: 100%; overflow: visible; padding-right: 50px; padding-left: 50px;">
+                <ui:VisualElement name="LeftInvertHint" style="flex-grow: 1; position: absolute; rotate: 90deg; height: 40px; width: 280px; flex-direction: row; translate: 0 48px; align-self: center; left: -115px;">
+                    <ui:VisualElement name="R1" class="buttonR1" style="flex-grow: 1; align-self: stretch;" />
+                    <ui:Label tabindex="-1" text="to invert" parse-escape-sequences="true" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 24px; align-self: stretch; -unity-font-style: bold;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="LeftCardContainer3" style="flex-grow: 1;">
-                    <ui:VisualElement name="LeftButton3" class="cardButtonLegend" style="flex-grow: 1;" />
+                <ui:VisualElement name="LeftCardContainer4" class="cardContainer" style="flex-grow: 1;">
+                    <ui:VisualElement name="LeftCard4" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;); height: auto; rotate: 3deg;" />
+                    <ui:VisualElement name="LeftButton4" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonX" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="LeftCardContainer3" class="cardContainer" style="flex-grow: 1;">
                     <ui:VisualElement name="LeftCard3" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="LeftButton3" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonCircle" style="flex-grow: 1;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="LeftCardContainer2" style="flex-grow: 1;">
-                    <ui:VisualElement name="LeftButton2" class="cardButtonLegend" style="flex-grow: 1;" />
+                <ui:VisualElement name="LeftCardContainer2" class="cardContainer" style="flex-grow: 1;">
                     <ui:VisualElement name="LeftCard2" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="LeftButton2" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonSquare" style="flex-grow: 1;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="LeftCardContainer1" style="flex-grow: 1;">
-                    <ui:VisualElement name="LeftButton1" class="cardButtonLegend" style="flex-grow: 1;" />
+                <ui:VisualElement name="LeftCardContainer1" class="cardContainer" style="flex-grow: 1;">
                     <ui:VisualElement name="LeftCard1" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="LeftButton1" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonTriangle" style="flex-grow: 1;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:Label tabindex="-1" text="/" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; padding-top: 0; -unity-font-style: normal;" />
@@ -41,11 +53,35 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="PlayerRight" class="player" style="flex-grow: 1; height: 100%; padding-right: 50px; padding-left: 20px;">
-                <ui:VisualElement name="RightCard4" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
-                <ui:VisualElement name="RightCard3" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
-                <ui:VisualElement name="RightCard2" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
-                <ui:VisualElement name="RightCard1" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+            <ui:VisualElement name="PlayerRight" class="player" style="flex-grow: 1; height: 100%; padding-right: 80px; padding-left: 20px;">
+                <ui:VisualElement name="RightInvertHint" style="flex-grow: 1; position: absolute; rotate: -90deg; height: 40px; width: 189px; flex-direction: row; translate: 0 48px; align-self: center; left: auto; right: -70px; top: 20px;">
+                    <ui:VisualElement name="R1" class="buttonR1" style="flex-grow: 1; align-self: stretch;" />
+                    <ui:Label tabindex="-1" text="to invert" parse-escape-sequences="true" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 24px; align-self: stretch; -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="RightCardContainer4" class="cardContainer" style="flex-grow: 1;">
+                    <ui:VisualElement name="RightCard4" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="RightButton4" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonX" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="RightCardContainer3" class="cardContainer" style="flex-grow: 1;">
+                    <ui:VisualElement name="RightCard3" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="RightButton3" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonCircle" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="RightCardContainer2" class="cardContainer" style="flex-grow: 1;">
+                    <ui:VisualElement name="RightCard2" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="RightButton2" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonSquare" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="RightCardContainer1" class="cardContainer" style="flex-grow: 1;">
+                    <ui:VisualElement name="RightCard1" class="card" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Cards/Card_Joker.png?fileID=2800000&amp;guid=7b6ac71177e78fe4287366a5e8437e6f&amp;type=3#Card_Joker&quot;);" />
+                    <ui:VisualElement name="RightButton1" class="cardButtonLegend" style="flex-grow: 1;">
+                        <ui:VisualElement class="buttonTriangle" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

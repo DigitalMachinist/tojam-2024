@@ -16,19 +16,19 @@
 
 .player {
     width: 42%;
-    padding-top: 30px;
+    padding-top: 20px;
     flex-direction: row-reverse;
     align-items: flex-start;
 }
 
 .card {
     width: auto;
-    height: 280px;
+    height: auto;
     -unity-background-scale-mode: stretch-to-fill;
     overflow: visible;
     rotate: 3deg;
     flex-direction: column;
-    margin-right: -20px;
+    margin-right: -30px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -41,11 +41,52 @@
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
+    max-width: 220px;
+    max-height: none;
 }
 
 .cardButtonLegend {
     position: absolute;
     right: 0;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(65, 65, 65, 0.5);
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    -unity-background-scale-mode: stretch-to-fill;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    top: -20px;
+}
+
+.cardContainer {
+    height: 300px;
+}
+
+.buttonTriangle {
+    background-image: url("project://database/Assets/DualShock/outline-green-triangle.png?fileID=2800000&guid=8a307ebee3c3d3e489f74a0eb316da0b&type=3#outline-green-triangle");
+}
+
+.buttonSquare {
+    background-image: url("project://database/Assets/DualShock/outline-purple-square.png?fileID=2800000&guid=4a6cefe882edee749bf8a81773875afd&type=3#outline-purple-square");
+}
+
+.buttonCircle {
+    background-image: url("project://database/Assets/DualShock/outline-red-circle.png?fileID=2800000&guid=1da4860b3932bb546a950d790e4fe247&type=3#outline-red-circle");
+}
+
+.buttonX {
+    background-image: url("project://database/Assets/DualShock/outline-blue-cross.png?fileID=2800000&guid=3ff00e155b2e24f4bad4bf72521f1fa3&type=3#outline-blue-cross");
+}
+
+.buttonR1 {
+    background-image: url("project://database/Assets/DualShock/plain-rectangle-R1.png?fileID=2800000&guid=40f11533eb16c5345ab6290aae795338&type=3#plain-rectangle-R1");
+    max-width: 50px;
+    width: 50px;
+    margin-top: 6px;
+    margin-right: 8px;
 }
