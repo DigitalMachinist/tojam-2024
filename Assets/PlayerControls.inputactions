@@ -13,6 +13,51 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Invert",
+                    "type": "Button",
+                    "id": "b54ca26b-6f9e-48ce-b8e6-b064c1ff315b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card1",
+                    "type": "Button",
+                    "id": "51fdc2ff-0ffc-4b5b-b07b-9d0b5e75b7ab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card2",
+                    "type": "Button",
+                    "id": "ce56958f-3c05-4182-ade1-e9d56b4a377d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card3",
+                    "type": "Button",
+                    "id": "60cf5f85-2971-4047-8aa9-f63eb401a978",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card4",
+                    "type": "Button",
+                    "id": "f2213b36-bd97-4db7-8739-ebe604f55f7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -81,18 +126,173 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a4e3f47-e479-443a-b3e8-c01293839284",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Invert",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2eea25f9-1caa-4b2f-b973-ec6df283be4b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Invert",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cc899f9-ca14-4f86-9af8-b434c10504f8",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0880d26-df60-4fe4-8be2-1df9d8666c75",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09b6a75d-04ac-49aa-8560-b9be558cb60f",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef813622-14f9-4369-a830-c4ae98708c9f",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fcab9347-96f9-463e-affb-b0fb02a4dd7e",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eaebcf87-48fa-495c-9801-f07ac4de05ae",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ddfcfa4-66bd-4a16-9d52-cd19ca5ca629",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1648b4cd-ae89-47fe-9be5-776a25468020",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
         {
             "name": "Player2",
-            "id": "21eabdbe-0b88-4d2e-84b2-02acadfaf804",
+            "id": "dbc55d85-2c17-4924-b1fc-9453ec5e2de7",
             "actions": [
                 {
                     "name": "Movement",
                     "type": "PassThrough",
-                    "id": "65e109d5-5748-4861-aacb-4be316eb2ee0",
+                    "id": "1695ea52-6837-4997-9353-6b0e37b70ce9",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Invert",
+                    "type": "Button",
+                    "id": "f212429a-e779-4740-a89e-ea4ded553bdc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card1",
+                    "type": "Button",
+                    "id": "c172efe0-ed72-4ee6-b1be-68dcdd269a9b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card2",
+                    "type": "Button",
+                    "id": "32698eb8-4ea4-427d-818b-5c36c2808d9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card3",
+                    "type": "Button",
+                    "id": "f1648608-b0c4-4a18-a3b4-afb70683b789",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Card4",
+                    "type": "Button",
+                    "id": "2f69411b-9453-4951-8c4e-2ff86aee14fb",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -101,7 +301,7 @@
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "1a1fdc3e-fab5-4968-9185-e27ecc1852d5",
+                    "id": "9291ad8d-a677-4df5-ba83-c7415af5a395",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -112,8 +312,8 @@
                 },
                 {
                     "name": "up",
-                    "id": "2464755e-dfd6-4196-8a23-03ab13e02ac2",
-                    "path": "<Keyboard>/#(W)",
+                    "id": "770f4bef-0bec-49c5-aff0-23699f8a142f",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -123,8 +323,8 @@
                 },
                 {
                     "name": "down",
-                    "id": "d988e21b-0962-4c85-9ca0-efbb887de35e",
-                    "path": "<Keyboard>/#(S)",
+                    "id": "b7c11e48-be00-4b5b-a8c3-27db4ad6e108",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -134,7 +334,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "427eb1a5-50b2-4c1e-a409-1829847e788f",
+                    "id": "5f56675c-5264-48d7-b905-186fc17f352e",
                     "path": "",
                     "interactions": "",
                     "processors": "",
@@ -145,7 +345,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "c36165ea-01d7-4192-b82b-f212a8c6bcae",
+                    "id": "5cfcd7d8-bf33-48a7-ae59-66b54706daa8",
                     "path": "",
                     "interactions": "",
                     "processors": "",
@@ -156,12 +356,122 @@
                 },
                 {
                     "name": "",
-                    "id": "1ec44a2e-e642-4469-a822-fc25709c89de",
+                    "id": "23e7048a-5a48-4756-b0ec-1a6692fdd746",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebcade3f-8927-46d1-be70-68aff69dbcaa",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Invert",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea93aeed-5ca4-4eb5-a3e6-dc63076197ef",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Invert",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c02bfd05-b50f-46b5-bf17-3d40b6665add",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "917062dc-0276-4f2c-97e3-701393c8aec8",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0214d2d0-f733-42b7-b248-0d5e8d07a2f1",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec7bc947-cc60-4698-a5e2-60b37d2e3722",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2de6e96b-e0f7-4145-a5ff-8d6150d963c0",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23b44f49-0434-4035-9bcd-5c85a07e6556",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f8a8349-d2ac-4cba-ac49-1a14713ec04c",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc9c367b-ded8-4956-acb9-cfc2b2d49437",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Card4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
