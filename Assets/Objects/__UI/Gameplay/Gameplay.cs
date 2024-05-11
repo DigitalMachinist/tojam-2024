@@ -13,7 +13,7 @@ public class Gameplay : MonoBehaviour
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
+        canvasGroup.alpha = 1;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         

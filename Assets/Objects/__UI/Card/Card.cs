@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,6 +59,10 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
             
             case CardType.Joker:
                 face.sprite = spriteJoker;
+                break;
+            
+            case CardType.None:
+                face.sprite = null;
                 break;
         }
     }

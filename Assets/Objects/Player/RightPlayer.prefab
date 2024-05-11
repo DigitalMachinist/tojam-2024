@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: side
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8990483225168470155, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
+      propertyPath: cardSlots.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

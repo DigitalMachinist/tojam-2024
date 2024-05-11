@@ -13,8 +13,8 @@ public class PongGame : MonoBehaviour
     private Player[] players;
     private List<Ball> balls;
     private Dictionary<PlayerSide, int> scores;
-    private GameState state = GameState.Menu;
     
+    public GameState state = GameState.Menu;
     public int winningScore = 10;
     public float ballAddDelaySeconds = 0.3f;
     public float ballRemoveDelaySeconds = 0.3f;
@@ -36,6 +36,7 @@ public class PongGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Pause();
         players = FindObjectsByType<Player>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         
         // Hook up event listeners for goal scoring.
@@ -55,12 +56,23 @@ public class PongGame : MonoBehaviour
         StartGame();
     }
 
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+    }
+
     public void StartGame()
     {
         ResetBalls();
         ResetScore();
-        SetState(GameState.Menu);
+        SetState(state);
         StartCoroutine(CoAddBall(CreateBall(), 0));
+        Unpause();
     }
 
     private void ResetBalls()
@@ -92,30 +104,36 @@ public class PongGame : MonoBehaviour
 
     private void SetState(GameState state)
     {
+        // TODO: Logic for control map state and such
         switch (state)
         {
             case GameState.Menu:
                 uiMenu.FadeIn(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                Pause();
                 break;
             
             case GameState.Gameplay:
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                Unpause();
                 break;
             
             case GameState.PlayCard:
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeIn(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                Pause();
+                uiPlayCard.Go(CardType.Joker, CardOrientation.Inverted);
                 break;
             
             case GameState.Pause:
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeIn(menuFadeSeconds);
+                Pause();
                 break;
         }
         
