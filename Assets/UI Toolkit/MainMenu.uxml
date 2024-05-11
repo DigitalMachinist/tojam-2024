@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenu.uss?fileID=7433441132597879392&amp;guid=bc80ffdc4e018524eb42b71eaa802cd3&amp;type=3#MainMenu" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoTitle" style="flex-grow: 1; position: absolute;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonsContainer" style="flex-grow: 1; margin-right: 40%; margin-left: 40%;">
+            <ui:Button text="Play 1P" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonPlay1P" tabindex="1" style="display: flex;" />
+            <ui:Button text="Play 2P" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonPlay2P" tabindex="2" />
+            <ui:Button text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonViewCredits" tabindex="3" />
+        </ui:VisualElement>
+        <ui:VisualElement name="LogosContainer" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoTOJam" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/tojam-2024-logo.png?fileID=2800000&amp;guid=21e16a0f3d8dd86438c83311d0892240&amp;type=3#tojam-2024-logo&quot;); width: 538px; height: 200px; position: absolute; left: 702px; align-self: center; bottom: 50px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

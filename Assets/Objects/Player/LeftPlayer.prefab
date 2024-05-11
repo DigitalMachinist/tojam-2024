@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_DefaultActionMap
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 8990483225168470155, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
+      propertyPath: cardSlots.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9146144988206527438, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
       propertyPath: m_DefaultActionMap
       value: Player2

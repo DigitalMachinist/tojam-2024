@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -11,15 +13,20 @@ public class PongGame : MonoBehaviour
     private Player[] players;
     private List<Ball> balls;
     private Dictionary<PlayerSide, int> scores;
-    private Dictionary<PlayerSide, Label> scoreLabels;
     
+    public GameState state = GameState.Menu;
     public int winningScore = 10;
     public float ballAddDelaySeconds = 0.3f;
     public float ballRemoveDelaySeconds = 0.3f;
     public float startingBallYMin = -4f;
     public float startingBallYMax = 4f;
     public float startingBallSpeed = 10f;
-    public UIDocument hud;
+    public float menuFadeSeconds = 0.2f;
+    // public UIDocument hud;
+    public Menu uiMenu;
+    public Gameplay uiGameplay;
+    public PlayCard uiPlayCard;
+    public Pause uiPause;
     public Transform ballsParent;
     public Ball prefabDefaultBall;
 
@@ -29,9 +36,9 @@ public class PongGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Pause();
         players = FindObjectsByType<Player>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         
-
         // Hook up event listeners for goal scoring.
         foreach (var player in players)
         {
@@ -49,11 +56,23 @@ public class PongGame : MonoBehaviour
         StartGame();
     }
 
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+    }
+
     public void StartGame()
     {
         ResetBalls();
         ResetScore();
+        SetState(state);
         StartCoroutine(CoAddBall(CreateBall(), 0));
+        Unpause();
     }
 
     private void ResetBalls()
@@ -77,16 +96,47 @@ public class PongGame : MonoBehaviour
             { PlayerSide.Right, 0 }
         };
         
-        scoreLabels = new Dictionary<PlayerSide, Label>()
+        foreach (var pair in scores)
         {
-            { PlayerSide.Left, hud.rootVisualElement.Q<Label>("ScoreLeftText") },
-            { PlayerSide.Right, hud.rootVisualElement.Q<Label>("ScoreRightText") },
-        };
-        
-        foreach (var pair in scoreLabels)
-        {
-            pair.Value.text = scores[pair.Key].ToString();
+            uiGameplay.SetScore(pair.Key, pair.Value);
         }
+    }
+
+    private void SetState(GameState state)
+    {
+        // TODO: Logic for control map state and such
+        switch (state)
+        {
+            case GameState.Menu:
+                uiMenu.FadeIn(menuFadeSeconds);
+                uiPlayCard.FadeOut(menuFadeSeconds);
+                uiPause.FadeOut(menuFadeSeconds);
+                Pause();
+                break;
+            
+            case GameState.Gameplay:
+                uiMenu.FadeOut(menuFadeSeconds);
+                uiPlayCard.FadeOut(menuFadeSeconds);
+                uiPause.FadeOut(menuFadeSeconds);
+                Unpause();
+                break;
+            
+            case GameState.PlayCard:
+                uiMenu.FadeOut(menuFadeSeconds);
+                uiPlayCard.FadeIn(menuFadeSeconds);
+                uiPause.FadeOut(menuFadeSeconds);
+                Pause();
+                uiPlayCard.Go(CardType.Joker, CardOrientation.Inverted);
+                break;
+            
+            case GameState.Pause:
+                uiMenu.FadeOut(menuFadeSeconds);
+                uiPlayCard.FadeOut(menuFadeSeconds);
+                uiPause.FadeIn(menuFadeSeconds);
+                Pause();
+                break;
+        }
+        
     }
 
     private void OnGoalScoredAgainst(Ball ball, PlayerSide side)
@@ -94,7 +144,7 @@ public class PongGame : MonoBehaviour
         PlayerSide sideScored = side.Opposite();
         int newScore = scores[sideScored] + 1;
         scores[sideScored] = newScore;
-        scoreLabels[sideScored].text = newScore.ToString();
+        uiGameplay.SetScore(sideScored, newScore);
         Debug.Log($"{sideScored} scored ({newScore})!");
 
         // Detect that a player won.
