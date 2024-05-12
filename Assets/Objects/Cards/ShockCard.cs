@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class ShockCard : MonoBehaviour ,ICardEffect
 {
+    private PongGame pongGame;
+
+    public float paralysisDuration = 10f;
+    
     public float EffectTime => 10f;
 
     public bool Triggered => throw new System.NotImplementedException();
@@ -18,9 +22,8 @@ public class ShockCard : MonoBehaviour ,ICardEffect
 
     private void Start()
     {
-        PongGame pg = FindObjectOfType<PongGame>();
-
-        pg.cardPlayed += OnCardPlayed;
+        pongGame = FindObjectOfType<PongGame>();
+        pongGame.cardPlayed += OnCardPlayed;
 
         var paddles = FindObjectsOfType<Paddle>();
         foreach (var paddle in paddles)
@@ -68,6 +71,7 @@ public class ShockCard : MonoBehaviour ,ICardEffect
         if(!_effectActive[playerSide] && card.orientation == CardOrientation.Normal)
         {
             _effectActive[playerSide] = true;
+            pongGame.sfxShockAttractStart.Play();
             if(playerSide == PlayerSide.Right)
             {
                   rightBalls = FindObjectsOfType<Ball>();
@@ -77,12 +81,19 @@ public class ShockCard : MonoBehaviour ,ICardEffect
                   leftBalls = FindObjectsOfType<Ball>();
             }
             StartCoroutine(DisableEffect(EffectTime, playerSide));
+            if (playerSide == PlayerSide.Left)
+            {
+                leftPaddle.EnableShockAttract();
+            }
+            else
+            {
+                rightPaddle.EnableShockAttract();
+            }
         }
 
-        //TODO
         if(!_effectActive[playerSide] && card.orientation == CardOrientation.Inverted)
         {
-
+            pongGame.GetPlayer(playerSide.Opposite()).Paddle.EnableParalysis(paralysisDuration);
         }
     }
 
@@ -90,6 +101,14 @@ public class ShockCard : MonoBehaviour ,ICardEffect
     {
         yield return new WaitForSeconds(waitTime);
         _effectActive[playerSide] = false;
+        if (playerSide == PlayerSide.Left)
+        {
+            leftPaddle.DisableShockAttract();
+        }
+        else
+        {
+            rightPaddle.DisableShockAttract();
+        }
     }
 
     public void EnableEffect(bool rightPlayer)

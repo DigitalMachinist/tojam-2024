@@ -61,6 +61,8 @@ public class PongGame : MonoBehaviour
     public AudioSource sfxIcePaddleStart;
     public AudioSource sfxIcePaddleEnd;
     public AudioSource sfxIceBallBreak;
+    public AudioSource sfxShockAttractStart;
+    public AudioSource sfxShockParalysis;
 
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;

@@ -55,9 +55,12 @@ MonoBehaviour:
   iceAccelration: 16
   iceDeceleration: 8
   iceMaxSpeed: 2
+  paralysisThreshold: 0.8
   spriteNormal: {fileID: 21300000, guid: e3627ec451beed245affe4769c86ab6b, type: 3}
   spriteIced: {fileID: 21300000, guid: cd616d227f3c46945990176d49570486, type: 3}
   spriteFire: {fileID: 21300000, guid: 362485847a5acc445b68477440687409, type: 3}
+  spriteShock: {fileID: 21300000, guid: 2ccba453e7443774a87fc58f88a961f6, type: 3}
+  spriteShockAttract: {fileID: 21300000, guid: 579056459c100624d9b5dfaf622568ae, type: 3}
   playerSide: 0
 --- !u!61 &3489415989494823020
 BoxCollider2D:
