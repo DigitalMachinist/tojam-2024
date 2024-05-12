@@ -242,37 +242,95 @@ public class PongGame : MonoBehaviour
         this.state = state;
     }
 
-    private void OnPlayCardActivationSound(CardType type)
+    private void OnPlayCardActivationSound(Card card)
     {
-        Debug.Log($"Play activation sound for {type}");
-        switch (type)
+        Debug.Log($"Play activation sound for {card.type}");
+        switch (card.type)
         {
             case CardType.Earth:
-                sfxActivationEarth.Play();
+                if(card.orientation == CardOrientation.Normal)
+                {
+                  PlayAudio(sfxActivationEarth);  
+                }
+                else
+                {
+                    PlayReverseAudio(sfxActivationEarth);
+                }
                 break;
             
             case CardType.Fire:
-                sfxActivationFire.Play();
+                if(card.orientation == CardOrientation.Normal)
+                {
+                  PlayAudio(sfxActivationFire);  
+                }
+                else
+                {
+                    PlayReverseAudio(sfxActivationFire);
+                }
                 break;
             
             case CardType.Ice:
-                sfxActivationIce.Play();
+                if(card.orientation == CardOrientation.Normal)
+                {
+                  PlayAudio(sfxActivationIce);  
+                }
+                else
+                {
+                    PlayReverseAudio(sfxActivationIce);
+                }
                 break;
             
             case CardType.Shock:
-                sfxActivationShock1.Play();
-                sfxActivationShock2.Play();
+                if(card.orientation == CardOrientation.Normal)
+                {
+                  PlayAudio(sfxActivationShock1);  
+                  PlayAudio(sfxActivationShock2);  
+                }
+                else
+                {
+                    PlayReverseAudio(sfxActivationShock1);
+                    PlayReverseAudio(sfxActivationShock2);
+                }
                 break;
             
             case CardType.Spaaace:
-                sfxActivationSpaaace.Play();
+                if(card.orientation == CardOrientation.Normal)
+                {
+                  PlayAudio(sfxActivationSpaaace);  
+                }
+                else
+                {
+                    PlayReverseAudio(sfxActivationSpaaace);
+                }
                 break;
             
             case CardType.Joker:
-                sfxActivationJoker.Play();
+                if(card.orientation == CardOrientation.Normal)
+                {
+                  PlayAudio(sfxActivationJoker);  
+                }
+                else
+                {
+                    PlayReverseAudio(sfxActivationJoker);
+                }
                 break;
             
         }
+    }
+
+    public void PlayAudio(AudioSource audioSource)
+    {
+        audioSource.pitch = 1;
+        audioSource.timeSamples =0;
+        audioSource.Play();
+    }
+
+    public void PlayReverseAudio(AudioSource audioSource)
+    {
+        audioSource.pitch = -1;
+        audioSource.timeSamples = audioSource.clip.samples - 1;
+        audioSource.Play();
+        
     }
 
     private void OnCardPlayed(CardData cardData, PlayerSide side)

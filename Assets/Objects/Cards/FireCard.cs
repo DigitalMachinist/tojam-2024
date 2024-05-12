@@ -28,8 +28,6 @@ public class FireCard : MonoBehaviour ,ICardEffect
     {  
        if(!col.gameObject.TryGetComponent<Paddle>(out Paddle paddle))
             return;
-    
-        Debug.Log("FASTER");
 
         if((_effectActive[PlayerSide.Right] && paddle.playerSide == PlayerSide.Right)
         ||(_effectActive[PlayerSide.Left] && paddle.playerSide == PlayerSide.Left))   

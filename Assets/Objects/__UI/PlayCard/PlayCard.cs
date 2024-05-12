@@ -20,7 +20,7 @@ public class PlayCard : MonoBehaviour
     public Sprite speedFrame2;
     public Image background;
 
-    public event Action<CardType> playActivationSound;
+    public event Action<Card> playActivationSound;
     public event Action ending;
     
     void Awake()
@@ -102,7 +102,7 @@ public class PlayCard : MonoBehaviour
 
     public void PlaySound()
     {
-        playActivationSound?.Invoke(card.type);
+        playActivationSound?.Invoke(card);
     }
 
     public void EndAnimation()
