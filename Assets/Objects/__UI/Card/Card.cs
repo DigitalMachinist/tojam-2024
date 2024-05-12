@@ -77,7 +77,7 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
     {
         Quaternion targetRotation = orientation == CardOrientation.Normal 
             ? Quaternion.identity 
-            : Quaternion.Euler(0f, 180f, 0f);
+            : Quaternion.Euler(0f, 0f, 180f);
         
         if (delay == 0f)
         {

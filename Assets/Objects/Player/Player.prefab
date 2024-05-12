@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
+  cardFlipSeconds: 0.15
+  cardCooldownSeconds: 5
+  cardRevealStepSeconds: 0.25
+  cardSlots: []
 --- !u!1001 &5846729441240022294
 PrefabInstance:
   m_ObjectHideFlags: 0

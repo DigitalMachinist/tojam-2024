@@ -19,6 +19,8 @@ public class Paddle : MonoBehaviour
     public PlayerSide playerSide;
 
     public event Action<int, CardOrientation> cardButtonPressed;
+    public event Action cardInvertPressed;
+    public event Action cardInvertReleased;
     public event Action pausePressed;
 
     void Awake()
@@ -57,6 +59,14 @@ public class Paddle : MonoBehaviour
     public void OnInvert(InputAction.CallbackContext callbackContext)
     {
         isInverting = callbackContext.action.IsPressed();
+        if (isInverting)
+        {
+            cardInvertPressed?.Invoke();
+        }
+        else
+        {
+            cardInvertReleased?.Invoke();
+        }
     }
 
     public void OnCard1(InputAction.CallbackContext callbackContext)
