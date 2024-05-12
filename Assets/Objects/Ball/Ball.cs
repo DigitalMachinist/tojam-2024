@@ -48,11 +48,25 @@ public class Ball : MonoBehaviour
         Paddle paddle = other.gameObject.GetComponent<Paddle>();
         if (paddle != null)
         {
+            if (paddle.playerSide == PlayerSide.Left)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Ball Left");
+            }
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer("Ball Right");
+            }
             pongGame.sfxBallHitPaddle.Play();
+            return;
         }
-        else
+
+        Barrier barrier = other.gameObject.GetComponent<Barrier>();
+        if (barrier != null)
         {
-            pongGame.sfxBallHitOther.Play();
+            pongGame.sfxEarthBarrierHit.Play();
+            return;
         }
+        
+        pongGame.sfxBallHitOther.Play();
     }
 }

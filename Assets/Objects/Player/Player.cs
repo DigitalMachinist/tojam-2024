@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Goal goal;
     private Paddle paddle;
     private CardType[] cards;
+    private PongGame pongGame;
 
     public PlayerSide side;
     public float cardFlipSeconds = 0.25f;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     {
         goal = GetComponentInChildren<Goal>();
         paddle = GetComponentInChildren<Paddle>();
+        pongGame = FindObjectOfType<PongGame>();
 
         goal.goalScored += ball => goalScoredAgainst?.Invoke(ball);
         paddle.cardButtonPressed += PlayCard;
@@ -60,6 +62,10 @@ public class Player : MonoBehaviour
 
     public void PlayCard(int index, CardOrientation orientation)
     {
+        if (pongGame.state != GameState.Gameplay)
+        {
+            return;
+        }
         if (cards[index] == CardType.None)
         {
             // Debug.Log("Can't play because this card is on cooldown.");

@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrierPrefab: {fileID: 4978201184481381473, guid: dbf64f16ec9094648a70717a8d446349, type: 3}
-  xRange: {x: 0, y: 8}
-  yRange: {x: -2.8, y: 4.8}
+  xRange: {x: 0, y: 6}
+  yRange: {x: -2.1, y: 4}
