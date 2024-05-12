@@ -41,7 +41,7 @@ public class PlayCard : MonoBehaviour
         {
             frame = ++frame % frames;
             background.sprite = frame == 0 ? speedFrame1 : speedFrame2;
-            elapsedTime -= frameTime;
+            elapsedTime = 0f;
         }
     }
 

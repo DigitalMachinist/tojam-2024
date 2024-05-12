@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public event Action paused;
     public event Action escaped;
 
+    public Paddle Paddle => paddle;
+    
     void Awake()
     {
         goal = GetComponentInChildren<Goal>();

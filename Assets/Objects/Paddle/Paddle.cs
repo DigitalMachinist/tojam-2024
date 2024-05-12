@@ -1,21 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
 public class Paddle : MonoBehaviour
 {
+    private IEnumerator coIce;
     public float yMax = 4f;
-    public float yMin = -3f;
-    public float speed = 3.0f;
+    public float yMin = -2.1f;
+    public float speed = 5.0f;
     public float regularSpeed;
     private Vector3 movement;
     private bool isInverting = false;
+    private bool isIced = false;
+    private float iceVelocity = 0f;
+
+    public float iceAccelration = 1f;
+    public float iceDeceleration = 0.5f;
+    public float iceMaxSpeed = 4f;
+    public Sprite spriteNormal;
+    public Sprite spriteIced;
 
     private PlayerInput playerInput;
     private Rigidbody2D rigidbody;
+    private Sprite sprite;
+    private PongGame pongGame;
 
     public PlayerSide playerSide;
 
@@ -29,23 +41,13 @@ public class Paddle : MonoBehaviour
     {
         playerInput = gameObject.GetComponent<PlayerInput>();
         rigidbody = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<Sprite>();
+        pongGame = FindObjectOfType<PongGame>();
         regularSpeed = speed;
     }
 
-    // void Start()
-    // {
-    //     playerInput.user.UnpairDevices();
-    //     InputUser.PerformPairingWithDevice(Keyboard.current, playerInput.user);
-    //     if (Gamepad.all.Count >= gamepadIndex + 1)
-    //     {
-    //         InputUser.PerformPairingWithDevice(Gamepad.all[gamepadIndex], playerInput.user);
-    //     }
-    // }
-    
     public void OnMovement(InputAction.CallbackContext callbackContext)
     {
-        // movement = callbackContext.ReadValue<Vector2>();
-        // movement.x = 0f;
         Vector2 baseMovement = callbackContext.ReadValue<Vector2>();
         if (baseMovement.y > 0f)
         {
@@ -59,7 +61,6 @@ public class Paddle : MonoBehaviour
         {
             movement = Vector2.zero;
         }
-        // Debug.Log(movement);
     }
 
     public void OnInvert(InputAction.CallbackContext callbackContext)
@@ -108,10 +109,74 @@ public class Paddle : MonoBehaviour
     void Update()
     {
         Vector3 pos = transform.position;
-        float motion = movement.y * speed * Time.deltaTime;
-        float result = pos.y + motion;
-        float clamped = Mathf.Clamp(result, yMin, yMax);
-        // Debug.Log($"POS: {pos.y}, MOTION: {motion}, RESULT: {result}, CLAMPED: {clamped}, MIN: {yMin}, MAX: {yMax}");
+        float newPos = 0f;
+        
+        if (isIced)
+        {
+            if (movement == Vector3.zero)
+            {
+                float direction = iceVelocity > 0 ? -1f : 1f;
+                iceVelocity = iceVelocity - direction * iceDeceleration * Time.deltaTime;
+                if (direction > 1f && iceVelocity > 0f)
+                {
+                    iceVelocity = 0f;
+                }
+                else if (direction < 1f && iceVelocity < 0f)
+                {
+                    iceVelocity = 0f;
+                }
+                newPos = pos.y + iceVelocity * Time.deltaTime;
+            }
+            else
+            {
+                iceVelocity = Mathf.Clamp(iceVelocity + movement.y * iceAccelration * Time.deltaTime, -speed, speed);
+                newPos = pos.y + iceVelocity * Time.deltaTime;
+            }
+        }
+        else
+        {
+            float motion = movement.y * speed * Time.deltaTime;
+            newPos = pos.y + motion;
+        }
+        
+        float clamped = Mathf.Clamp(newPos, yMin, yMax);
         transform.position = new Vector3(pos.x, clamped, pos.z);
+    }
+
+    public void EnableIce(float duration)
+    {
+        if (coIce != null)
+        {
+            StopCoroutine(coIce);
+            coIce = null;
+        }
+        
+        coIce = CoIce(duration);
+        StartCoroutine(coIce);
+    }
+
+    public IEnumerator CoIce(float duration)
+    {
+        isIced = true;
+        SetSprite();
+        pongGame.sfxIcePaddleStart.Play();
+        yield return new WaitForSeconds(duration);
+        isIced = false;
+        SetSprite();
+        pongGame.sfxIcePaddleEnd.Play();
+
+        coIce = null;
+    }
+
+    private void SetSprite()
+    {
+        if (isIced)
+        {
+            sprite = spriteIced;
+        }
+        else
+        {
+            sprite = spriteNormal;
+        }
     }
 }
