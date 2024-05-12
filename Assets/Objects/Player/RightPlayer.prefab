@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3748850784824172271, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
+      propertyPath: playerSide
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748850784824172271, guid: 142f574a9ef5f5a42876d00814534735, type: 3}
       propertyPath: gamepadIndex
       value: 1
       objectReference: {fileID: 0}

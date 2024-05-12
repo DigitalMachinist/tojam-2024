@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4801923937116853780}
   - component: {fileID: 7582411537602907559}
+  - component: {fileID: -7792549843477790088}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -47,3 +48,15 @@ MonoBehaviour:
   barrierPrefab: {fileID: 4978201184481381473, guid: dbf64f16ec9094648a70717a8d446349, type: 3}
   xRange: {x: 0, y: 8}
   yRange: {x: -2.8, y: 4.8}
+--- !u!114 &-7792549843477790088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351871066327141108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fc54336b6854b9691b5c205eed4c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

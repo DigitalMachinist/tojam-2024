@@ -16,6 +16,8 @@ public class Paddle : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rigidbody;
 
+    public PlayerSide playerSide;
+
     public event Action<int, CardOrientation> cardButtonPressed;
     public event Action pausePressed;
 

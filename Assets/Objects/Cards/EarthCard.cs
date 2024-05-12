@@ -24,12 +24,6 @@ public class EarthCard : MonoBehaviour ,ICardEffect
 
         pg.cardPlayed += OnCardPlayed;
     }
-    private void OnDestroy() 
-    {
-        PongGame pg = FindObjectOfType<PongGame>();
-        pg.cardPlayed -= OnCardPlayed;
-    }
-
 
     public void OnCardPlayed(PlayerSide playerSide, CardData card)
     {
