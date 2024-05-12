@@ -17,7 +17,9 @@ public class PongGame : MonoBehaviour
     private Dictionary<PlayerSide, int> scores;
     private PlayerSide playedCardSide;
     private CardData playedCardData;
-    
+
+    public List<Ball> Balls => balls;
+
     public GameState state = GameState.Menu;
     public int winningScore = 10;
     public float ballAddDelaySeconds = 0.3f;

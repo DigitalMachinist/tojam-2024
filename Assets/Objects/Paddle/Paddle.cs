@@ -26,7 +26,7 @@ public class Paddle : MonoBehaviour
 
     private PlayerInput playerInput;
     private Rigidbody2D rigidbody;
-    private Sprite sprite;
+    private SpriteRenderer spriteRenderer;
     private PongGame pongGame;
 
     public PlayerSide playerSide;
@@ -41,7 +41,7 @@ public class Paddle : MonoBehaviour
     {
         playerInput = gameObject.GetComponent<PlayerInput>();
         rigidbody = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<Sprite>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         pongGame = FindObjectOfType<PongGame>();
         regularSpeed = speed;
     }
@@ -172,11 +172,11 @@ public class Paddle : MonoBehaviour
     {
         if (isIced)
         {
-            sprite = spriteIced;
+            spriteRenderer.sprite = spriteIced;
         }
         else
         {
-            sprite = spriteNormal;
+            spriteRenderer.sprite = spriteNormal;
         }
     }
 }

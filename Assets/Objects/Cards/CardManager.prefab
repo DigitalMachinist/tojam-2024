@@ -74,3 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceNormalEffectSeconds: 10
+  numberOfIceballs: 3
+  minSpeedFactorIceball: 0.6
+  maxSpeedFactorIceball: 1
+  coneDegreesIceballs: 60
+  prefabIceball: {fileID: 8782739153248205405, guid: b5befd68c5ff5e842a4c8ae24d63cfab, type: 3}

@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private Rigidbody2D rigidbody;
-    private bool inPlay = false;
-    private PongGame pongGame;
+    protected Rigidbody2D rigidbody;
+    protected bool inPlay = false;
+    protected PongGame pongGame;
+
+    public Rigidbody2D Rigidbody => rigidbody;
 
     public bool isImportant = true;
 
@@ -46,7 +48,7 @@ public class Ball : MonoBehaviour
         return inPlay;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         ballCollision?.Invoke(this, other);
         
