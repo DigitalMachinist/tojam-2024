@@ -10,6 +10,7 @@ public class Paddle : MonoBehaviour
     public float yMax = 4f;
     public float yMin = -3f;
     public float speed = 3.0f;
+    public float regularSpeed;
     private Vector3 movement;
     private bool isInverting = false;
 
@@ -28,6 +29,7 @@ public class Paddle : MonoBehaviour
     {
         playerInput = gameObject.GetComponent<PlayerInput>();
         rigidbody = GetComponent<Rigidbody2D>();
+        regularSpeed = speed;
     }
 
     // void Start()
