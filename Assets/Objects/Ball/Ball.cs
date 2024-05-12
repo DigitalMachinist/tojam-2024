@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Ball : MonoBehaviour
 
     public bool isImportant = true;
 
+    public event Action<Ball, Collision2D> ballCollision;
+
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -19,6 +22,11 @@ public class Ball : MonoBehaviour
         inPlay = true;
         transform.position = startPosition;
         rigidbody.velocity = startVelocity;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        ballCollision?.Invoke(this, col);
     }
 
     public void PrepareToGo(float delay)

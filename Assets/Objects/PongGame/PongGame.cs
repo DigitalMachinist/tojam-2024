@@ -38,6 +38,7 @@ public class PongGame : MonoBehaviour
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;
     public event Action<PlayerSide, CardData> cardPlayed;
+    public event Action<Ball> ballSpawned;
     public event Action<PlayerSide, CardOrientation> cardsOriented;
     
     // Start is called before the first frame update
@@ -289,7 +290,10 @@ public class PongGame : MonoBehaviour
 
     public Ball CreateBall()
     {
-        return Instantiate(prefabDefaultBall, ballsParent);
+        
+        Ball newBall = Instantiate(prefabDefaultBall, ballsParent);
+        ballSpawned?.Invoke(newBall);
+        return newBall;
     }
 
     public void RemoveBall(Ball ball)
