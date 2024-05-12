@@ -1,14 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.UI;
 
-public class Pause : MonoBehaviour, IFadeable
+public class Win : MonoBehaviour, IFadeable
 {
     private IEnumerator coFade;
     private CanvasGroup canvasGroup;
+    
+    public TextMeshProUGUI winnerText;
 
     void Awake()
     {
@@ -16,6 +16,11 @@ public class Pause : MonoBehaviour, IFadeable
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+    }
+
+    public void SetWinningSide(PlayerSide side)
+    {
+        winnerText.text = $"{side} wins!";
     }
     
     public void FadeIn(float delay, float targetAlpha = 1f, bool useUnscaledTime = true)

@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yMax: 4
-  yMin: -3
-  speed: 4
+  yMin: -2.1
+  speed: 5
+  playerSide: 0
 --- !u!61 &3489415989494823020
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -372,6 +373,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b50500d1-ed94-42cb-b43c-d55dd84efca1
     m_ActionName: Player2/Pause[/DualSenseGamepadHID/select,/DualSenseGamepadHID1/select,/DualSenseGamepadHID/start,/DualSenseGamepadHID1/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnEscape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bae4916c-13cc-4b32-a05a-ccb5f49516ef
+    m_ActionName: Player/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

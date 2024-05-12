@@ -22,6 +22,7 @@ public class Paddle : MonoBehaviour
     public event Action cardInvertPressed;
     public event Action cardInvertReleased;
     public event Action pausePressed;
+    public event Action escapePressed;
 
     void Awake()
     {
@@ -41,6 +42,8 @@ public class Paddle : MonoBehaviour
     
     public void OnMovement(InputAction.CallbackContext callbackContext)
     {
+        // movement = callbackContext.ReadValue<Vector2>();
+        // movement.x = 0f;
         Vector2 baseMovement = callbackContext.ReadValue<Vector2>();
         if (baseMovement.y > 0f)
         {
@@ -54,6 +57,7 @@ public class Paddle : MonoBehaviour
         {
             movement = Vector2.zero;
         }
+        // Debug.Log(movement);
     }
 
     public void OnInvert(InputAction.CallbackContext callbackContext)
@@ -94,10 +98,18 @@ public class Paddle : MonoBehaviour
         pausePressed?.Invoke();
     }
 
+    public void OnEscape(InputAction.CallbackContext callbackContext)
+    {
+        escapePressed?.Invoke();
+    }
+
     void Update()
     {
         Vector3 pos = transform.position;
-        float yPos = Mathf.Clamp(pos.y + movement.y * speed * Time.deltaTime, yMin, yMax);
-        transform.position = new Vector3(pos.x, yPos, pos.z);
+        float motion = movement.y * speed * Time.deltaTime;
+        float result = pos.y + motion;
+        float clamped = Mathf.Clamp(result, yMin, yMax);
+        // Debug.Log($"POS: {pos.y}, MOTION: {motion}, RESULT: {result}, CLAMPED: {clamped}, MIN: {yMin}, MAX: {yMax}");
+        transform.position = new Vector3(pos.x, clamped, pos.z);
     }
 }

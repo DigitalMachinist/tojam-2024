@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public event Action<CardData> cardPlayed;
     public event Action<CardOrientation> cardsOriented;
     public event Action paused;
+    public event Action escaped;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
         paddle.cardInvertPressed += () => OnCardsOriented(CardOrientation.Inverted);
         paddle.cardInvertReleased += () => OnCardsOriented(CardOrientation.Normal);
         paddle.pausePressed += () => paused?.Invoke();
+        paddle.escapePressed += () => escaped?.Invoke();
     }
 
     private void OnCardsOriented(CardOrientation orientation)

@@ -4,4 +4,5 @@
     Gameplay,
     PlayCard,
     Pause,
+    Win,
 }

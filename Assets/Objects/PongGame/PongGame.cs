@@ -28,6 +28,7 @@ public class PongGame : MonoBehaviour
     public Gameplay uiGameplay;
     public PlayCard uiPlayCard;
     public Pause uiPause;
+    public Win uiWin;
     public Transform ballsParent;
     public Ball prefabDefaultBall;
 
@@ -50,6 +51,7 @@ public class PongGame : MonoBehaviour
                 player.cardPlayed += cardData => OnCardPlayed(cardData, PlayerSide.Left);
                 player.cardsOriented += orientation => OnCardsOriented(orientation, PlayerSide.Left);
                 player.paused += OnPaused;
+                player.escaped += OnEscaped;
             }
             else
             {
@@ -57,6 +59,7 @@ public class PongGame : MonoBehaviour
                 player.cardPlayed += cardData => OnCardPlayed(cardData, PlayerSide.Right);
                 player.cardsOriented += orientation => OnCardsOriented(orientation, PlayerSide.Right);
                 player.paused += OnPaused;
+                player.escaped += OnEscaped;
             }
         }
         
@@ -136,6 +139,7 @@ public class PongGame : MonoBehaviour
                 uiMenu.FadeIn(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                uiWin.FadeOut(menuFadeSeconds);
                 ResetBalls();
                 ResetPlayers();
                 Pause();
@@ -145,6 +149,7 @@ public class PongGame : MonoBehaviour
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                uiWin.FadeOut(menuFadeSeconds);
                 StartGame();
                 break;
             
@@ -152,6 +157,7 @@ public class PongGame : MonoBehaviour
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeIn(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                uiWin.FadeOut(menuFadeSeconds);
                 Pause();
                 uiPlayCard.Go(CardType.Joker, CardOrientation.Inverted);
                 break;
@@ -160,6 +166,17 @@ public class PongGame : MonoBehaviour
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeIn(menuFadeSeconds);
+                uiWin.FadeOut(menuFadeSeconds);
+                Pause();
+                break;
+            
+            case GameState.Win:
+                uiMenu.FadeOut(menuFadeSeconds);
+                uiPlayCard.FadeOut(menuFadeSeconds);
+                uiPause.FadeOut(menuFadeSeconds);
+                uiWin.FadeIn(menuFadeSeconds);
+                ResetBalls();
+                ResetPlayers();
                 Pause();
                 break;
         }
@@ -200,15 +217,15 @@ public class PongGame : MonoBehaviour
         }
     }
 
-    // private void OnPauseEnded()
-    // {
-    //     if (state != GameState.Pause)
-    //     {
-    //         return;
-    //     }
-    //     
-    //     SetState(GameState.Gameplay);
-    // }
+    private void OnEscaped()
+    {
+        if (state != GameState.Pause)
+        {
+            return;
+        }
+        
+        SetState(GameState.Menu);
+    }
 
     private void OnMenu2PSelected()
     {
@@ -239,6 +256,8 @@ public class PongGame : MonoBehaviour
         {
             var loserScore = scores[side];
             Debug.Log($"Winner winner, chicken dinner! {sideScored} wins ({newScore} to {loserScore})!");
+            uiWin.SetWinningSide(sideScored);
+            SetState(GameState.Win);
             gameEnded?.Invoke(sideScored, newScore, loserScore);
         }
 
