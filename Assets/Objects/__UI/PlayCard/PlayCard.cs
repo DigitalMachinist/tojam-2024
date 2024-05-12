@@ -20,6 +20,7 @@ public class PlayCard : MonoBehaviour
     public Sprite speedFrame2;
     public Image background;
 
+    public event Action<CardType> playActivationSound;
     public event Action ending;
     
     void Awake()
@@ -101,7 +102,7 @@ public class PlayCard : MonoBehaviour
 
     public void PlaySound()
     {
-        Debug.Log("BLEAT sound goes here");
+        playActivationSound?.Invoke(card.type);
     }
 
     public void EndAnimation()

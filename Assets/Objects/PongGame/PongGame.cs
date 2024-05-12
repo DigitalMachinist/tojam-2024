@@ -35,6 +35,25 @@ public class PongGame : MonoBehaviour
     public Transform ballsParent;
     public Ball prefabDefaultBall;
 
+    [Header("Audio")]
+    public AudioSource musicTitle;
+    public AudioSource[] musicsGame;
+    public AudioSource sfxStart;
+    public AudioSource sfxPause;
+    public AudioSource sfxWin;
+    public AudioSource sfxGoal;
+    public AudioSource sfxBallSpawn;
+    public AudioSource sfxBallHitPaddle;
+    public AudioSource sfxBallHitOther;
+    public AudioSource sfxActivation;
+    public AudioSource sfxActivationEarth;
+    public AudioSource sfxActivationFire;
+    public AudioSource sfxActivationIce;
+    public AudioSource sfxActivationShock1;
+    public AudioSource sfxActivationShock2;
+    public AudioSource sfxActivationSpaaace;
+    public AudioSource sfxActivationJoker;
+
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;
     public event Action<PlayerSide, CardData> cardPlayed;
@@ -69,6 +88,7 @@ public class PongGame : MonoBehaviour
         // Hook up state change listeners.
         uiMenu.play2PSelected += OnMenu2PSelected;
         uiPlayCard.ending += OnPlayCardEnded;
+        uiPlayCard.playActivationSound += OnPlayCardActivationSound;
         
         // Configure the initial state for the state set in the inspector.
         SetState(state);
@@ -97,6 +117,9 @@ public class PongGame : MonoBehaviour
         ResetScore();
         coAddBall = CoAddBall(CreateBall(), 0);
         StartCoroutine(coAddBall);
+        
+        musicTitle.Stop();
+        musicsGame[Random.Range(0, musicsGame.Length - 1)].Play();
     }
 
     public void ResetPlayers()
@@ -150,6 +173,11 @@ public class PongGame : MonoBehaviour
                 ResetBalls();
                 ResetPlayers();
                 Pause();
+                musicTitle.Play();
+                foreach (var audioSource in musicsGame)
+                {
+                    audioSource.Stop();
+                }
                 break;
             
             case GameState.Gameplay:
@@ -158,6 +186,11 @@ public class PongGame : MonoBehaviour
                 uiPause.FadeOut(menuFadeSeconds);
                 uiWin.FadeOut(menuFadeSeconds);
                 Unpause();
+                foreach (var audioSource in musicsGame)
+                {
+                    audioSource.volume = .2f;
+                }
+                sfxStart.Play();
                 break;
             
             case GameState.PlayCard:
@@ -166,6 +199,11 @@ public class PongGame : MonoBehaviour
                 uiPause.FadeOut(menuFadeSeconds);
                 uiWin.FadeOut(menuFadeSeconds);
                 Pause();
+                foreach (var audioSource in musicsGame)
+                {
+                    audioSource.volume = 0.1f;
+                }
+                sfxActivation.Play();
                 break;
             
             case GameState.Pause:
@@ -174,6 +212,11 @@ public class PongGame : MonoBehaviour
                 uiPause.FadeIn(menuFadeSeconds);
                 uiWin.FadeOut(menuFadeSeconds);
                 Pause();
+                foreach (var audioSource in musicsGame)
+                {
+                    audioSource.volume = 0.05f;
+                }
+                sfxPause.Play();
                 break;
             
             case GameState.Win:
@@ -184,10 +227,48 @@ public class PongGame : MonoBehaviour
                 ResetBalls();
                 ResetPlayers();
                 Pause();
+                foreach (var audioSource in musicsGame)
+                {
+                    audioSource.volume = 0.05f;
+                }
+                sfxWin.Play();
                 break;
         }
 
         this.state = state;
+    }
+
+    private void OnPlayCardActivationSound(CardType type)
+    {
+        Debug.Log($"Play activation sound for {type}");
+        switch (type)
+        {
+            case CardType.Earth:
+                sfxActivationEarth.Play();
+                break;
+            
+            case CardType.Fire:
+                sfxActivationFire.Play();
+                break;
+            
+            case CardType.Ice:
+                sfxActivationIce.Play();
+                break;
+            
+            case CardType.Shock:
+                sfxActivationShock1.Play();
+                sfxActivationShock2.Play();
+                break;
+            
+            case CardType.Spaaace:
+                sfxActivationSpaaace.Play();
+                break;
+            
+            case CardType.Joker:
+                sfxActivationJoker.Play();
+                break;
+            
+        }
     }
 
     private void OnCardPlayed(CardData cardData, PlayerSide side)
@@ -235,7 +316,7 @@ public class PongGame : MonoBehaviour
 
     private void OnEscaped()
     {
-        if (state != GameState.Pause || state != GameState.Win)
+        if (state != GameState.Pause && state != GameState.Win)
         {
             return;
         }
@@ -266,6 +347,7 @@ public class PongGame : MonoBehaviour
         int newScore = scores[sideScored] + 1;
         scores[sideScored] = newScore;
         uiGameplay.SetScore(sideScored, newScore);
+        sfxGoal.Play();
         // Debug.Log($"{sideScored} scored ({newScore})!");
 
         // Detect that a player won.
@@ -275,6 +357,7 @@ public class PongGame : MonoBehaviour
             Debug.Log($"Winner winner, chicken dinner! {sideScored} wins ({newScore} to {loserScore})!");
             uiWin.SetWinningSide(sideScored);
             SetState(GameState.Win);
+            sfxWin.Play();
             gameEnded?.Invoke(sideScored, newScore, loserScore);
         }
 
@@ -334,6 +417,7 @@ public class PongGame : MonoBehaviour
         }
         while (Mathf.Abs(Vector3.Dot(ballStartVelocity, Vector2.right)) < ballDotProductThreshold);
         ball.Go(ballStartPosition, ballStartVelocity);
+        sfxBallSpawn.Play();
         coAddBall = null;
     }
 
