@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,17 @@ using UnityEngine.InputSystem.Users;
 
 public class Paddle : MonoBehaviour
 {
-    public int gamepadIndex;
+    public float yMax = 4f;
+    public float yMin = -3f;
     public float speed = 3.0f;
     private Vector3 movement;
-    private bool inverted = false;
+    private bool isInverting = false;
 
     private PlayerInput playerInput;
     private Rigidbody2D rigidbody;
+
+    public event Action<int, CardOrientation> cardButtonPressed;
+    public event Action pausePressed;
 
     void Awake()
     {
@@ -30,7 +35,7 @@ public class Paddle : MonoBehaviour
     //     }
     // }
     
-    public void OnMove( InputAction.CallbackContext callbackContext)
+    public void OnMovement(InputAction.CallbackContext callbackContext)
     {
         Vector2 baseMovement = callbackContext.ReadValue<Vector2>();
         if (baseMovement.y > 0f)
@@ -47,18 +52,41 @@ public class Paddle : MonoBehaviour
         }
     }
 
-    public void OnInvert( InputAction.CallbackContext callbackContext)
+    public void OnInvert(InputAction.CallbackContext callbackContext)
     {
-        inverted = callbackContext.action.IsPressed();
+        isInverting = callbackContext.action.IsPressed();
     }
 
+    public void OnCard1(InputAction.CallbackContext callbackContext)
+    {
+        cardButtonPressed?.Invoke(0, isInverting ? CardOrientation.Inverted : CardOrientation.Normal);
+    }
 
+    public void OnCard2(InputAction.CallbackContext callbackContext)
+    {
+        cardButtonPressed?.Invoke(1, isInverting ? CardOrientation.Inverted : CardOrientation.Normal);
+    }
 
-    // Update is called once per frame
+    public void OnCard3(InputAction.CallbackContext callbackContext)
+    {
+        cardButtonPressed?.Invoke(2, isInverting ? CardOrientation.Inverted : CardOrientation.Normal);
+    }
+
+    public void OnCard4(InputAction.CallbackContext callbackContext)
+    {
+        cardButtonPressed?.Invoke(3, isInverting ? CardOrientation.Inverted : CardOrientation.Normal);
+    }
+
+    public void OnPause(InputAction.CallbackContext callbackContext)
+    {
+        pausePressed?.Invoke();
+    }
+
     void Update()
     {
-        rigidbody.velocity = movement * speed;
-        // transform.position = transform.position + movement * speed * Time.deltaTime;
+        Vector3 pos = transform.position;
+        float yPos = Mathf.Clamp(pos.y + movement.y * speed * Time.deltaTime, yMin, yMax);
+        transform.position = new Vector3(pos.x, yPos, pos.z);
 
         if(playerInput.actions["Card1"].triggered)
         {

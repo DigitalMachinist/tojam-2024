@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16364e300d4d9d442a0eb60b3a4bef6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamepadIndex: 0
+  yMax: 4
+  yMin: -3
   speed: 4
 --- !u!61 &3489415989494823020
 BoxCollider2D:
@@ -151,7 +152,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7288326809170371577}
         m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: OnMovement
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -164,30 +165,90 @@ MonoBehaviour:
     m_ActionId: 955e30cb-f2c4-48c9-980d-5dc4302b71e6
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnInvert
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b54ca26b-6f9e-48ce-b8e6-b064c1ff315b
     m_ActionName: Player/Invert[/Keyboard/rightShift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 51fdc2ff-0ffc-4b5b-b07b-9d0b5e75b7ab
     m_ActionName: Player/Card1[/Keyboard/7]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ce56958f-3c05-4182-ade1-e9d56b4a377d
     m_ActionName: Player/Card2[/Keyboard/8]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 60cf5f85-2971-4047-8aa9-f63eb401a978
     m_ActionName: Player/Card3[/Keyboard/9]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f2213b36-bd97-4db7-8739-ebe604f55f7a
     m_ActionName: Player/Card4[/Keyboard/0]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7288326809170371577}
         m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: OnMovement
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -200,29 +261,117 @@ MonoBehaviour:
     m_ActionId: 1695ea52-6837-4997-9353-6b0e37b70ce9
     m_ActionName: Player2/Movement[/Keyboard/w,/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnInvert
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f212429a-e779-4740-a89e-ea4ded553bdc
     m_ActionName: Player2/Invert[/Keyboard/rightShift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c172efe0-ed72-4ee6-b1be-68dcdd269a9b
     m_ActionName: Player2/Card1[/Keyboard/1]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 32698eb8-4ea4-427d-818b-5c36c2808d9c
     m_ActionName: Player2/Card2[/Keyboard/2]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f1648608-b0c4-4a18-a3b4-afb70683b789
     m_ActionName: Player2/Card3[/Keyboard/3]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnCard4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2f69411b-9453-4951-8c4e-2ff86aee14fb
     m_ActionName: Player2/Card4[/Keyboard/4]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eb394138-1f29-44c6-b37d-a9ec45abeb34
     m_ActionName: Player/Pause[/XInputControllerWindows/select,/DualSenseGamepadHID/select,/XInputControllerWindows/start,/DualSenseGamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7288326809170371577}
+        m_TargetAssemblyTypeName: Paddle, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b50500d1-ed94-42cb-b43c-d55dd84efca1
+    m_ActionName: Player2/Pause[/DualSenseGamepadHID/select,/DualSenseGamepadHID1/select,/DualSenseGamepadHID/start,/DualSenseGamepadHID1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

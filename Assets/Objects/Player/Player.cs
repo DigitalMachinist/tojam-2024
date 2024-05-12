@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     private Goal goal;
     private Paddle paddle;
-    private bool isInverting = false;
     private CardType[] cards;
 
     public PlayerSide side;
@@ -25,6 +24,7 @@ public class Player : MonoBehaviour
         paddle = GetComponentInChildren<Paddle>();
 
         goal.goalScored += ball => goalScoredAgainst?.Invoke(ball);
+        paddle.cardButtonPressed += PlayCard;
     }
 
     // void Start()
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayCard(int index)
+    public void PlayCard(int index, CardOrientation orientation)
     {
         CardType type = cards[index];
         if (type == CardType.None)
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         cardPlayed?.Invoke(new CardData()
         {
             type = type,
-            orientation = isInverting ? CardOrientation.Inverted : CardOrientation.Normal,
+            orientation = orientation,
             index = index
         });
         
