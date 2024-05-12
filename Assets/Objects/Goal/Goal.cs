@@ -9,11 +9,14 @@ public class Goal : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name);
         Ball ball = other.GetComponent<Ball>();
         if (ball == null || !ball.IsInPlay())
         {
             return;
         }
+
+        Debug.Log("Score");
         
         goalScored?.Invoke(ball);
     }

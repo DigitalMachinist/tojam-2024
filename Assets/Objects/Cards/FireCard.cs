@@ -60,6 +60,7 @@ public class FireCard : MonoBehaviour ,ICardEffect
                     _effectActive[playerSide] = true;
                     StartCoroutine(ReturnToNormalSpeed(playerSide, EffectTime, paddle));
                     paddle.speed *= 8f;
+                    paddle.EnableFire();
                 }
             }
         }
@@ -80,6 +81,7 @@ public class FireCard : MonoBehaviour ,ICardEffect
         paddle.speed = paddle.regularSpeed;
         _effectActive[playerSide] = false;
         // Debug.Log("return to normal speed");
+        paddle.DisableFire();
 
     }
 

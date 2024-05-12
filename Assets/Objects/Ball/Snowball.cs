@@ -8,6 +8,6 @@ public class Snowball : Ball
     protected override void OnCollisionEnter2D(Collision2D other)
     {
         pongGame.sfxIceBallBreak.Play();
-        Destroy(gameObject);
+        Destroy(gameObject, 0.1f);
     }
 }

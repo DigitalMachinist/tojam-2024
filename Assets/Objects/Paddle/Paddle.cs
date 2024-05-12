@@ -17,12 +17,14 @@ public class Paddle : MonoBehaviour
     private bool isInverting = false;
     private bool isIced = false;
     private float iceVelocity = 0f;
+    private bool isFire = false;
 
     public float iceAccelration = 1f;
     public float iceDeceleration = 0.5f;
     public float iceMaxSpeed = 4f;
     public Sprite spriteNormal;
     public Sprite spriteIced;
+    public Sprite spriteFire;
 
     private PlayerInput playerInput;
     private Rigidbody2D rigidbody;
@@ -168,11 +170,27 @@ public class Paddle : MonoBehaviour
         coIce = null;
     }
 
+    public void EnableFire()
+    {
+        isFire = true;
+        SetSprite();
+    }
+
+    public void DisableFire()
+    {
+        isFire = false;
+        SetSprite();
+    }
+
     private void SetSprite()
     {
         if (isIced)
         {
             spriteRenderer.sprite = spriteIced;
+        }
+        else if (isFire)
+        {
+            spriteRenderer.sprite = spriteFire;
         }
         else
         {
