@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Ball : MonoBehaviour
     private PongGame pongGame;
 
     public bool isImportant = true;
+
+    public event Action<Ball, Collision2D> ballCollision;
 
     void Awake()
     {
@@ -45,6 +48,8 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        ballCollision?.Invoke(this, other);
+        
         Paddle paddle = other.gameObject.GetComponent<Paddle>();
         if (paddle != null)
         {
