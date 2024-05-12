@@ -57,6 +57,7 @@ MonoBehaviour:
   iceMaxSpeed: 2
   spriteNormal: {fileID: 21300000, guid: e3627ec451beed245affe4769c86ab6b, type: 3}
   spriteIced: {fileID: 21300000, guid: cd616d227f3c46945990176d49570486, type: 3}
+  spriteFire: {fileID: 21300000, guid: 362485847a5acc445b68477440687409, type: 3}
   playerSide: 0
 --- !u!61 &3489415989494823020
 BoxCollider2D:
