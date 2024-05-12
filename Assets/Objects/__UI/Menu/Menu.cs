@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour, IFadeable
     private float anykeyCooldown;
 
     public float textBlinkSeconds = .5f;
-    public TextMeshProUGUI textPressAnyKey;
+    public GameObject blinkAnykee;
     
     public event Action play1PSelected; 
     public event Action play2PSelected; 
@@ -38,7 +38,7 @@ public class Menu : MonoBehaviour, IFadeable
         elaspedSeconds += Time.unscaledDeltaTime;
         if (elaspedSeconds >= textBlinkSeconds)
         {
-            textPressAnyKey.gameObject.SetActive(!textPressAnyKey.gameObject.activeInHierarchy);
+            blinkAnykee.SetActive(!blinkAnykee.activeInHierarchy);
             elaspedSeconds = 0;
         }
     }

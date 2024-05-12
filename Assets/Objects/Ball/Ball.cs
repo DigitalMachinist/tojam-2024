@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
     private bool inPlay = false;
+    private PongGame pongGame;
 
     public bool isImportant = true;
 
@@ -15,6 +16,7 @@ public class Ball : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        pongGame = FindObjectOfType<PongGame>();
     }
 
     public void Go(Vector2 startPosition, Vector2 startVelocity)
@@ -47,5 +49,18 @@ public class Ball : MonoBehaviour
     public bool IsInPlay()
     {
         return inPlay;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Paddle paddle = other.gameObject.GetComponent<Paddle>();
+        if (paddle != null)
+        {
+            pongGame.sfxBallHitPaddle.Play();
+        }
+        else
+        {
+            pongGame.sfxBallHitOther.Play();
+        }
     }
 }
