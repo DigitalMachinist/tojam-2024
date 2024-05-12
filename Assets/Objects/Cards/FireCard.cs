@@ -65,12 +65,12 @@ public class FireCard : MonoBehaviour ,ICardEffect
         }
     }
 
-     IEnumerator DisableEffect( float waitTime, PlayerSide playerSide)
+    IEnumerator DisableEffect( float waitTime, PlayerSide playerSide)
     {
         yield return new WaitForSeconds(waitTime);
         _effectActive[playerSide] = false;
 
-        Debug.Log("return to normal speed");
+        // Debug.Log("return to normal speed");
 
     }
 
@@ -79,7 +79,7 @@ public class FireCard : MonoBehaviour ,ICardEffect
         yield return new WaitForSeconds(waitTime);
         paddle.speed = paddle.regularSpeed;
         _effectActive[playerSide] = false;
-        Debug.Log("return to normal speed");
+        // Debug.Log("return to normal speed");
 
     }
 
