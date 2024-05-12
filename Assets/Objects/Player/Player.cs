@@ -71,10 +71,12 @@ public class Player : MonoBehaviour
         StartCoroutine(CoCooldown(index, newType));
     }
 
-    private IEnumerator CoCooldown(int index, CardType type)
+    private IEnumerator CoCooldown(int index, CardType newType)
     {
+        cards[index] = CardType.None;
         cardSlots[index].SetFacing(CardFacing.Back, cardFlipSeconds);
         yield return new WaitForSeconds(cardCooldownSeconds);
+        cards[index] = newType;
         cardSlots[index].SetType(cards[index]); 
         cardSlots[index].SetOrientation(CardOrientation.Normal, 0f); 
         cardSlots[index].SetFacing(CardFacing.Face, cardFlipSeconds);

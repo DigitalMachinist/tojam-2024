@@ -50,7 +50,7 @@ public class PongGame : MonoBehaviour
             else
             {
                 player.goalScoredAgainst += ball => OnGoalScoredAgainst(ball, PlayerSide.Right);
-                player.cardPlayed += cardData => OnCardPlayed(cardData, PlayerSide.Left);
+                player.cardPlayed += cardData => OnCardPlayed(cardData, PlayerSide.Right);
             }
         }
         
@@ -169,8 +169,7 @@ public class PongGame : MonoBehaviour
             return;
         }
         
-        // TODO: Should the power triggering logic go in here?
-        
+        Debug.Log($"{side} used {cardData.type} card in {cardData.orientation} orientation.");
        cardPlayed?.Invoke(side, cardData); 
     }
 
