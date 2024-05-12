@@ -8,11 +8,11 @@ using UnityEngine.InputSystem.Users;
 
 public class Paddle : MonoBehaviour
 {
+    private IEnumerator coIce;
     public float yMax = 4f;
     public float yMin = -2.1f;
     public float speed = 5.0f;
-
-    private IEnumerator coIce;
+    public float regularSpeed;
     private Vector3 movement;
     private bool isInverting = false;
     private bool isIced = false;
@@ -43,6 +43,7 @@ public class Paddle : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         sprite = GetComponent<Sprite>();
         pongGame = FindObjectOfType<PongGame>();
+        regularSpeed = speed;
     }
 
     public void OnMovement(InputAction.CallbackContext callbackContext)
