@@ -28,8 +28,6 @@ public class FireCard : MonoBehaviour ,ICardEffect
     {  
        if(!col.gameObject.TryGetComponent<Paddle>(out Paddle paddle))
             return;
-    
-        Debug.Log("FASTER");
 
         if((_effectActive[PlayerSide.Right] && paddle.playerSide == PlayerSide.Right)
         ||(_effectActive[PlayerSide.Left] && paddle.playerSide == PlayerSide.Left))   
@@ -52,13 +50,13 @@ public class FireCard : MonoBehaviour ,ICardEffect
         }
         else if(!_effectActive[playerSide] && card.orientation == CardOrientation.Inverted)
         {
-            Debug.Log("Got here2");
+            // Debug.Log("Got here2");
             var paddles = FindObjectsOfType<Paddle>();
             foreach (var paddle in paddles)
             {
                 if(paddle.playerSide!= playerSide)
                 {
-                    Debug.Log("Got here22");
+                    // Debug.Log("Got here22");
                     _effectActive[playerSide] = true;
                     StartCoroutine(ReturnToNormalSpeed(playerSide, EffectTime, paddle));
                     paddle.speed *= 8f;
@@ -67,12 +65,12 @@ public class FireCard : MonoBehaviour ,ICardEffect
         }
     }
 
-     IEnumerator DisableEffect( float waitTime, PlayerSide playerSide)
+    IEnumerator DisableEffect( float waitTime, PlayerSide playerSide)
     {
         yield return new WaitForSeconds(waitTime);
         _effectActive[playerSide] = false;
 
-        Debug.Log("return to normal speed");
+        // Debug.Log("return to normal speed");
 
     }
 
@@ -81,7 +79,7 @@ public class FireCard : MonoBehaviour ,ICardEffect
         yield return new WaitForSeconds(waitTime);
         paddle.speed = paddle.regularSpeed;
         _effectActive[playerSide] = false;
-        Debug.Log("return to normal speed");
+        // Debug.Log("return to normal speed");
 
     }
 

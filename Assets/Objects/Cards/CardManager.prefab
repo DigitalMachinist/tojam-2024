@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7582411537602907559}
   - component: {fileID: -7792549843477790088}
   - component: {fileID: 7820077239372093234}
+  - component: {fileID: 651535801893868783}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -79,3 +80,15 @@ MonoBehaviour:
   maxSpeedFactorIceball: 1
   coneDegreesIceballs: 60
   prefabIceball: {fileID: 8782739153248205405, guid: b5befd68c5ff5e842a4c8ae24d63cfab, type: 3}
+--- !u!114 &651535801893868783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351871066327141108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e60eef27c1144ceeae15a8912706df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
