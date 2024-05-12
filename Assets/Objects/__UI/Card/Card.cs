@@ -103,7 +103,7 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
         while (timeElapsed < delay)
         {
             yield return null;
-            timeElapsed += useUnscaledTime ? Time.unscaledTime : Time.deltaTime;
+            timeElapsed += useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
             float fraction = timeElapsed / delay;
             Quaternion currentRotation = Quaternion.Slerp(startRotation, targetRotation, fraction);
             face.rectTransform.localRotation = currentRotation;

@@ -54,6 +54,7 @@ public class Menu : MonoBehaviour, IFadeable
 
     private void Fade(float delay, float targetAlpha, bool useUnscaledTime = true)
     {
+        Debug.Log("Fade " + targetAlpha);
         if (coFade != null)
         {
             StopCoroutine(coFade);
@@ -75,7 +76,7 @@ public class Menu : MonoBehaviour, IFadeable
         while (timeElapsed < delay)
         {
             yield return null;
-            timeElapsed += useUnscaledTime ? Time.unscaledTime : Time.deltaTime;
+            timeElapsed += useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
             float fraction = timeElapsed / delay;
             canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, fraction);
         }

@@ -60,6 +60,7 @@ public class PongGame : MonoBehaviour
         // TODO: Pause from gameplay
         // TODO: Return to menu from pause
         
+        // Configure the initial state for the state set in the inspector.
         SetState(state);
     }
 
@@ -78,7 +79,7 @@ public class PongGame : MonoBehaviour
         Debug.Log("Started a game");
         ResetBalls();
         ResetScore();
-        SetState(state);
+        // SetState(GameState.Gameplay);
         StartCoroutine(CoAddBall(CreateBall(), 0));
         Unpause();
     }
@@ -122,6 +123,7 @@ public class PongGame : MonoBehaviour
 
     private void SetState(GameState state)
     {
+        Debug.Log("Setting state to " + state);
         // TODO: Logic for control map state and such
         switch (state)
         {
@@ -156,7 +158,8 @@ public class PongGame : MonoBehaviour
                 Pause();
                 break;
         }
-        
+
+        this.state = state;
     }
 
     private void OnCardPlayed(CardData cardData, PlayerSide side)
@@ -187,6 +190,7 @@ public class PongGame : MonoBehaviour
         {
             return;
         }
+        Debug.Log("OnMenu2PSelected");
         
         SetState(GameState.Gameplay);
     }
