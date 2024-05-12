@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour, IFadeable
     private IEnumerator coFade;
     private CanvasGroup canvasGroup;
     private float elaspedSeconds = 0f;
+    private float anykeyCooldown;
 
     public float textBlinkSeconds = .5f;
     public TextMeshProUGUI textPressAnyKey;
@@ -20,14 +21,18 @@ public class Menu : MonoBehaviour, IFadeable
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        FadeOut(0f);
+        // FadeOut(0f);
     }
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        anykeyCooldown -= Time.unscaledDeltaTime;
+        if (anykeyCooldown < 0f)
         {
-            play2PSelected?.Invoke();
+            if (Input.anyKeyDown)
+            {
+                play2PSelected?.Invoke();
+            }
         }
 
         elaspedSeconds += Time.unscaledDeltaTime;
@@ -40,6 +45,8 @@ public class Menu : MonoBehaviour, IFadeable
 
     public void FadeIn(float delay, float targetAlpha = 1f, bool useUnscaledTime = true)
     {
+        anykeyCooldown = delay;
+        Debug.Log("Menu fade in");
         Fade(delay, targetAlpha, useUnscaledTime);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;

@@ -11,9 +11,12 @@ using Random = UnityEngine.Random;
 
 public class PongGame : MonoBehaviour
 {
+    private IEnumerator coAddBall;
     private Player[] players;
     private List<Ball> balls;
     private Dictionary<PlayerSide, int> scores;
+    private PlayerSide playedCardSide;
+    private CardData playedCardData;
     
     public GameState state = GameState.Menu;
     public int winningScore = 10;
@@ -65,8 +68,7 @@ public class PongGame : MonoBehaviour
         
         // Hook up state change listeners.
         uiMenu.play2PSelected += OnMenu2PSelected;
-        // uiPause.ended += OnPauseEnded;
-        // TODO: Return to menu from pause
+        uiPlayCard.ending += OnPlayCardEnded;
         
         // Configure the initial state for the state set in the inspector.
         SetState(state);
@@ -84,12 +86,17 @@ public class PongGame : MonoBehaviour
 
     public void StartGame()
     {
+        if (coAddBall != null)
+        {
+            StopCoroutine(coAddBall);
+            coAddBall = null;
+        }
+        
         Debug.Log("Started a game");
         ResetBalls();
         ResetScore();
-        // SetState(GameState.Gameplay);
-        StartCoroutine(CoAddBall(CreateBall(), 0));
-        Unpause();
+        coAddBall = CoAddBall(CreateBall(), 0);
+        StartCoroutine(coAddBall);
     }
 
     public void ResetPlayers()
@@ -150,7 +157,7 @@ public class PongGame : MonoBehaviour
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
                 uiWin.FadeOut(menuFadeSeconds);
-                StartGame();
+                Unpause();
                 break;
             
             case GameState.PlayCard:
@@ -159,7 +166,6 @@ public class PongGame : MonoBehaviour
                 uiPause.FadeOut(menuFadeSeconds);
                 uiWin.FadeOut(menuFadeSeconds);
                 Pause();
-                uiPlayCard.Go(CardType.Joker, CardOrientation.Inverted);
                 break;
             
             case GameState.Pause:
@@ -192,7 +198,17 @@ public class PongGame : MonoBehaviour
         }
         
         Debug.Log($"{side} used {cardData.type} card in {cardData.orientation} orientation.");
-        cardPlayed?.Invoke(side, cardData); 
+        playedCardData = cardData;
+        playedCardSide = side;
+        SetState(GameState.PlayCard);
+        uiPlayCard.Go(cardData.type, cardData.orientation);
+    }
+
+    private void OnPlayCardEnded()
+    {
+        Debug.Log("Play card animation ending");
+        SetState(GameState.Gameplay);
+        cardPlayed?.Invoke(playedCardSide, playedCardData);
     }
 
     private void OnCardsOriented(CardOrientation orientation, PlayerSide side)
@@ -219,7 +235,7 @@ public class PongGame : MonoBehaviour
 
     private void OnEscaped()
     {
-        if (state != GameState.Pause)
+        if (state != GameState.Pause || state != GameState.Win)
         {
             return;
         }
@@ -234,6 +250,7 @@ public class PongGame : MonoBehaviour
             return;
         }
         
+        StartGame();
         SetState(GameState.Gameplay);
     }
 
@@ -283,15 +300,30 @@ public class PongGame : MonoBehaviour
         // If this is the last important ball on the field, create a new one.
         if (!IsGameEnded() && !balls.Any(ball => ball.isImportant))
         {
-            StartCoroutine(CoAddBall(CreateBall(), ballAddDelaySeconds));
+            coAddBall = CoAddBall(CreateBall(), ballAddDelaySeconds);
+            StartCoroutine(coAddBall);
         }
     }
 
     private IEnumerator CoAddBall(Ball ball, float delay)
     {
+        if (ball == null)
+        {
+            coAddBall = null;
+            yield break;
+        }
+        
         AddBall(ball);
         ball.PrepareToGo(delay);
+        
         yield return new WaitForSeconds(delay);
+        
+        if (ball == null)
+        {
+            coAddBall = null;
+            yield break;
+        }
+        
         Vector2 ballStartPosition = new Vector2(0, Random.Range(startingBallYMin, startingBallYMax));
         Vector2 ballStartVelocity = Vector2.zero;
         do
@@ -302,12 +334,25 @@ public class PongGame : MonoBehaviour
         }
         while (Mathf.Abs(Vector3.Dot(ballStartVelocity, Vector2.right)) < ballDotProductThreshold);
         ball.Go(ballStartPosition, ballStartVelocity);
+        coAddBall = null;
     }
 
     private IEnumerator CoRemoveBall(Ball ball, float delay)
     {
+        if (ball == null)
+        {
+            yield break;
+        }
+        
         ball.PrepareToDie(delay);
+        
         yield return new WaitForSeconds(delay);
+        
+        if (ball == null)
+        {
+            yield break;
+        }
+        
         RemoveBall(ball);
     }
 
