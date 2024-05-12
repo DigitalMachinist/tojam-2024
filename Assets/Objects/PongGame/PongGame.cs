@@ -56,6 +56,9 @@ public class PongGame : MonoBehaviour
     public AudioSource sfxEarthBarrierSpawn;
     public AudioSource sfxEarthBarrierHit;
     public AudioSource sfxEarthBarrierBreak;
+    public AudioSource sfxIcePaddleStart;
+    public AudioSource sfxIcePaddleEnd;
+    public AudioSource sfxIceBallBreak;
 
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;

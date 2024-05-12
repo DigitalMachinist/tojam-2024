@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4801923937116853780}
   - component: {fileID: 7582411537602907559}
   - component: {fileID: -7792549843477790088}
+  - component: {fileID: 7820077239372093234}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -60,3 +61,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33fc54336b6854b9691b5c205eed4c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7820077239372093234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351871066327141108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c07d412cf6ad7c4caa3f1ae2dac382b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceNormalEffectSeconds: 10

@@ -50,7 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yMax: 4
   yMin: -2.1
-  speed: 5
+  speed: 6
+  iceAccelration: 16
+  iceDeceleration: 8
+  iceMaxSpeed: 2
+  spriteNormal: {fileID: 0}
+  spriteIced: {fileID: 0}
   playerSide: 0
 --- !u!61 &3489415989494823020
 BoxCollider2D:
