@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16364e300d4d9d442a0eb60b3a4bef6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamepadIndex: 0
   speed: 4
 --- !u!61 &3489415989494823020
 BoxCollider2D:
@@ -218,7 +219,11 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2f69411b-9453-4951-8c4e-2ff86aee14fb
     m_ActionName: Player2/Card4[/Keyboard/4]
-  m_NeverAutoSwitchControlSchemes: 1
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb394138-1f29-44c6-b37d-a9ec45abeb34
+    m_ActionName: Player/Pause[/XInputControllerWindows/select,/DualSenseGamepadHID/select,/XInputControllerWindows/start,/DualSenseGamepadHID/start]
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1

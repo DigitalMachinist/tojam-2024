@@ -190,7 +190,6 @@ public class PongGame : MonoBehaviour
         {
             return;
         }
-        Debug.Log("OnMenu2PSelected");
         
         SetState(GameState.Gameplay);
     }

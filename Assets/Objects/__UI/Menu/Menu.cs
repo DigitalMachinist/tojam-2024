@@ -54,7 +54,6 @@ public class Menu : MonoBehaviour, IFadeable
 
     private void Fade(float delay, float targetAlpha, bool useUnscaledTime = true)
     {
-        Debug.Log("Fade " + targetAlpha);
         if (coFade != null)
         {
             StopCoroutine(coFade);
