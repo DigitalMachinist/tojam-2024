@@ -27,11 +27,11 @@ public class Player : MonoBehaviour
         goal.goalScored += ball => goalScoredAgainst?.Invoke(ball);
     }
 
-    void Start()
-    {
-        Reset();
-        Reveal();
-    }
+    // void Start()
+    // {
+    //     Reset();
+    //     Reveal();
+    // }
 
     public void Reset()
     {

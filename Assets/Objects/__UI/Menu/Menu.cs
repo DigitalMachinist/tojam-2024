@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,11 @@ public class Menu : MonoBehaviour, IFadeable
 {
     private IEnumerator coFade;
     private CanvasGroup canvasGroup;
-    
-    public Button play1PButton;
-    public Button play2PButton;
+    private float elaspedSeconds = 0f;
 
+    public float textBlinkSeconds = .5f;
+    public TextMeshProUGUI textPressAnyKey;
+    
     public event Action play1PSelected; 
     public event Action play2PSelected; 
     
@@ -19,9 +21,21 @@ public class Menu : MonoBehaviour, IFadeable
     {
         canvasGroup = GetComponent<CanvasGroup>();
         FadeOut(0f);
-        
-        play1PButton.onClick.AddListener(() => play1PSelected?.Invoke());
-        play2PButton.onClick.AddListener(() => play2PSelected?.Invoke());
+    }
+
+    void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            play2PSelected?.Invoke();
+        }
+
+        elaspedSeconds += Time.unscaledDeltaTime;
+        if (elaspedSeconds >= textBlinkSeconds)
+        {
+            textPressAnyKey.gameObject.SetActive(!textPressAnyKey.gameObject.activeInHierarchy);
+            elaspedSeconds = 0;
+        }
     }
 
     public void FadeIn(float delay, float targetAlpha = 1f, bool useUnscaledTime = true)

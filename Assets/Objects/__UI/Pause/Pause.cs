@@ -10,12 +10,22 @@ public class Pause : MonoBehaviour, IFadeable
     private IEnumerator coFade;
     private CanvasGroup canvasGroup;
 
+    public event Action ended;
+
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+    }
+
+    void Update()
+    {
+        if (Input.anyKey)
+        {
+            ended?.Invoke();
+        }
     }
     
     public void FadeIn(float delay, float targetAlpha = 1f, bool useUnscaledTime = true)

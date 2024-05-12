@@ -155,7 +155,7 @@ public class Card : MonoBehaviour, IFlippable, IOrientable
         while (timeElapsed < delay)
         {
             yield return null;
-            timeElapsed += useUnscaledTime ? Time.unscaledTime : Time.deltaTime;
+            timeElapsed += useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
             float fraction = timeElapsed / delay;
             face.rectTransform.localScale = new Vector3(Mathf.Lerp(startFaceScale, targetFaceScale, fraction), 1f, 1f);
             back.rectTransform.localScale = new Vector3(Mathf.Lerp(startBackScale, targetBackScale, fraction), 1f, 1f);

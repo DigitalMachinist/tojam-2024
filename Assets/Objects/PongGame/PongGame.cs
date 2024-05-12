@@ -22,7 +22,6 @@ public class PongGame : MonoBehaviour
     public float startingBallYMax = 4f;
     public float startingBallSpeed = 10f;
     public float menuFadeSeconds = 0.2f;
-    // public UIDocument hud;
     public Menu uiMenu;
     public Gameplay uiGameplay;
     public PlayCard uiPlayCard;
@@ -32,6 +31,7 @@ public class PongGame : MonoBehaviour
 
     // Args: Winner, winner score, loser score
     public event Action<PlayerSide, int, int> gameEnded;
+    public event Action<PlayerSide, CardData> cardPlayed;
     
     // Start is called before the first frame update
     void Start()
@@ -45,15 +45,22 @@ public class PongGame : MonoBehaviour
             if (player.side == PlayerSide.Left)
             {
                 player.goalScoredAgainst += ball => OnGoalScoredAgainst(ball, PlayerSide.Left);
+                player.cardPlayed += cardData => OnCardPlayed(cardData, PlayerSide.Left);
             }
             else
             {
                 player.goalScoredAgainst += ball => OnGoalScoredAgainst(ball, PlayerSide.Right);
+                player.cardPlayed += cardData => OnCardPlayed(cardData, PlayerSide.Left);
             }
         }
         
-        // Start a ball going!
-        StartGame();
+        // Hook up state change listeners.
+        uiMenu.play2PSelected += OnMenu2PSelected;
+        uiPause.ended += OnPauseEnded;
+        // TODO: Pause from gameplay
+        // TODO: Return to menu from pause
+        
+        SetState(state);
     }
 
     public void Pause()
@@ -68,11 +75,21 @@ public class PongGame : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("Started a game");
         ResetBalls();
         ResetScore();
         SetState(state);
         StartCoroutine(CoAddBall(CreateBall(), 0));
         Unpause();
+    }
+
+    public void ResetPlayers()
+    {
+        foreach (var player in players)
+        {
+            player.Reset();
+            player.Reveal();
+        }
     }
 
     private void ResetBalls()
@@ -81,8 +98,9 @@ public class PongGame : MonoBehaviour
         {
             balls = new List<Ball>();
         }
-        
-        foreach (var ball in balls)
+
+        var tempBalls = new List<Ball>(balls);
+        foreach (var ball in tempBalls)
         {
             RemoveBall(ball);
         }
@@ -111,6 +129,8 @@ public class PongGame : MonoBehaviour
                 uiMenu.FadeIn(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
+                ResetBalls();
+                ResetPlayers();
                 Pause();
                 break;
             
@@ -118,7 +138,7 @@ public class PongGame : MonoBehaviour
                 uiMenu.FadeOut(menuFadeSeconds);
                 uiPlayCard.FadeOut(menuFadeSeconds);
                 uiPause.FadeOut(menuFadeSeconds);
-                Unpause();
+                StartGame();
                 break;
             
             case GameState.PlayCard:
@@ -139,13 +159,51 @@ public class PongGame : MonoBehaviour
         
     }
 
+    private void OnCardPlayed(CardData cardData, PlayerSide side)
+    {
+        if (state != GameState.Gameplay)
+        {
+            return;
+        }
+        
+        // TODO: Should the power triggering logic go in here?
+        
+       cardPlayed?.Invoke(side, cardData); 
+    }
+
+    private void OnPauseEnded()
+    {
+        if (state != GameState.Pause)
+        {
+            return;
+        }
+        
+        SetState(GameState.Gameplay);
+    }
+
+    private void OnMenu2PSelected()
+    {
+        if (state != GameState.Menu)
+        {
+            return;
+        }
+        
+        SetState(GameState.Gameplay);
+    }
+
     private void OnGoalScoredAgainst(Ball ball, PlayerSide side)
     {
+        if (state != GameState.Gameplay)
+        {
+            RemoveBall(ball);
+            return;
+        }
+        
         PlayerSide sideScored = side.Opposite();
         int newScore = scores[sideScored] + 1;
         scores[sideScored] = newScore;
         uiGameplay.SetScore(sideScored, newScore);
-        Debug.Log($"{sideScored} scored ({newScore})!");
+        // Debug.Log($"{sideScored} scored ({newScore})!");
 
         // Detect that a player won.
         if (newScore >= winningScore)
