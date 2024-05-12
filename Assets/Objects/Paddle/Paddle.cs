@@ -87,11 +87,5 @@ public class Paddle : MonoBehaviour
         Vector3 pos = transform.position;
         float yPos = Mathf.Clamp(pos.y + movement.y * speed * Time.deltaTime, yMin, yMax);
         transform.position = new Vector3(pos.x, yPos, pos.z);
-
-        if(playerInput.actions["Card1"].triggered)
-        {
-            Debug.Log("Card1 pressed");
-        }
-
     }
 }
